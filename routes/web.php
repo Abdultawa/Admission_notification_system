@@ -41,8 +41,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('can:admin')->prefix('admin')->controller(AdminController::class)->name('admin.')->group(function () {
     Route::get('dashboard', 'index')->name('dashboard');
+    Route::get('allStudent', 'all')->name('allStudent');
     Route::get('{application}/info', 'info')->name('info');
     Route::post('{id}/approve', 'approve')->name('approve');
+    Route::post('{id}/decline', 'decline')->name('decline');
     Route::delete('applications/{application}', 'destroy')->name('destroy');
 });
 

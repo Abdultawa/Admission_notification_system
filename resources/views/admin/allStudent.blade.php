@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('User Application') }}
+            {{ __('Approved Student') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -41,16 +41,6 @@
     @if (session()->has('success'))
     <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" class="fixed bg-blue-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
         <p>{{ session('success') }}</p>
-    </div>
-    @endif
-    @if (session()->has('error'))
-    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" class="fixed bg-red-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
-        <p>{{ session('error') }}</p>
-    </div>
-    @endif
-    @if (session()->has('warning'))
-    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" class="fixed bg-yellow-300 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
-        <p>{{ session('warning') }}</p>
     </div>
     @endif
 </x-app-layout>

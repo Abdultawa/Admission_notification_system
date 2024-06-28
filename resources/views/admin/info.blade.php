@@ -8,7 +8,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    
+
                     <div>
   <div class="px-4 sm:px-0">
     <h3 class="text-base font-semibold leading-7 text-gray-900">Applicant Information</h3>
@@ -63,23 +63,48 @@
 
             </div>
                 </div>
+                @if($application->status == "approved"|| $application->status == "accepted")
                 <div class="flex justify-end mt-2">
-                <form action="{{ route('admin.approve', ['application' => $application]) }}" method="POST">
+                <button class="bg-green-300 text-white rounded-xl px-4 py-2 mt-2">{{ ucwords($application->status) }}</button>
+                </div>
+                @elseif($application->status == "declined")
+                <div class="flex justify-end mt-2">
+                <button class="bg-yellow-300 text-white rounded-xl px-4 py-2 mt-2">{{ ucwords($application->status) }}</button>
+                </div>
+                @else
+                <div class="flex justify-end mt-2">
+                <form action="{{ route('admin.approve', ['id' => $application->id]) }}" method="POST">
                     @csrf
                     @method('POST')
                     <button type="submit" class="bg-green-500 text-white rounded-xl px-4 py-2">Approve</button>
                 </form>
-                <form action="{{ route('admin.destroy', $application->id) }}" method="POST">
+                <form action="{{ route('admin.decline', ['id' => $application->id]) }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <button type="submit" class="bg-yellow-300 text-white rounded-xl px-4 py-2">Decline</button>
+                </form>
+                <!-- <form action="{{ route('admin.destroy', $application->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="bg-red-500 text-white rounded-xl px-4 py-2 float-end">Delete</button>
-                </form>
-        </div>
+                </form> -->
+                </div>
+                @endif
         </div>
     </div>
     @if (session()->has('success'))
     <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" class="fixed bg-blue-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
         <p>{{ session('success') }}</p>
+    </div>
+    @endif
+    @if (session()->has('error'))
+    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" class="fixed bg-red-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+        <p>{{ session('error') }}</p>
+    </div>
+    @endif
+    @if (session()->has('warning'))
+    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" class="fixed bg-yellow-300 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+        <p>{{ session('warning') }}</p>
     </div>
     @endif
 </x-app-layout>

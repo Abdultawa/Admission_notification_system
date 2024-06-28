@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.allStudent')" :active="request()->routeIs('admin.allStudent')">
+                        {{ __('All Student') }}
+                    </x-nav-link>
                     @endadmin
                 </div>
             </div>

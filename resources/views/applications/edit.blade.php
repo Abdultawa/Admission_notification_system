@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Make Application') }}
+            {{ __('Edit Application') }}
         </h2>
     </x-slot>
 
@@ -448,7 +448,7 @@ var lastId,
 menuItems.click(function(e){
   var href = $(this).attr("href"),
       offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
-  $('html, body').stop().animate({ 
+  $('html, body').stop().animate({
       scrollTop: offsetTop
   }, 300);
   if (!helpMenuDiv.classList.contains("hidden")) {
@@ -477,7 +477,7 @@ $(window).scroll(function(){
        menuItems
          .parent().removeClass("font-bold border-yellow-600")
          .end().filter("[href='#"+id+"']").parent().addClass("font-bold border-yellow-600");
-   }                   
+   }
 });
 
 </script>
